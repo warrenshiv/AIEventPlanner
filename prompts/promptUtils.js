@@ -1,36 +1,38 @@
 // file: /prompts/promptUtils.js
+
 export function getSystemPrompt() {
   return {
     role: "system",
-    content: "You are a helpful assistant that specializes in generating creative pet names.",
+    content: "You are an AI Event Planner, specialized in creating memorable events and short descriptions.",
   };
 }
 
 export function getUserPrompt(input) {
   return {
     role: "user",
-    content: `Generate a creative pet name and short description for a ${input}.`,
+    content: `Generate a event recommendation and a short description for a ${input}`, // Refine the content to provide more context and specify that you're looking for event-related suggestions.
   };
 }
 
 export function getFunctions() {
   return [
     {
-      name: "generate_pet_name",
-      description: "Generate a pet name for an animal.",
+      name: "generate_event_recommendation", // Modify the function name.
+      description: "Generate event-related recommendations.",
       parameters: {
         type: "object",
         properties: {
-          animalPetName: {
+          // Define the expected structure of the AI response for events.
+          eventRecommendation: {
             type: "string",
-            description: "The generated pet name for the animal",
+            description: "The generated event recommendation.",
           },
           description: {
             type: "string",
-            description: "The generated explanation of the pet name",
+            description: "The generated event-related recommendations explanation",
           },
         },
-        "required": ["animalPetName", "description"]
+        required: ["eventRecommendation", "description"],
       },
     },
   ];
