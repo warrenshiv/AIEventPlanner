@@ -1,5 +1,5 @@
 # Local environment variables
-.env.local
+.env
 
 # Next.js build output
 .next
