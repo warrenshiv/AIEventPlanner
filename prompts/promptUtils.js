@@ -3,36 +3,43 @@
 export function getSystemPrompt() {
   return {
     role: "system",
-    content: "You are an AI Event Planner, specialized in creating memorable events and short descriptions.",
+    content: "You are an AI Event Planner, specialized in crafting memorable events, scheduling activities, and managing budgets.",
   };
 }
 
 export function getUserPrompt(input) {
   return {
     role: "user",
-    content: `Generate a event recommendation and a short description for a ${input}`, // Refine the content to provide more context and specify that you're looking for event-related suggestions.
+    content: `Plan an event for ${input.guests} guests at ${input.location}. The event should be ${input.description}. Suggest theme-based activities and provide a budget estimate.`, // Specify the desired event plan details.
   };
 }
 
 export function getFunctions() {
   return [
     {
-      name: "generate_event_recommendation", // Modify the function name.
-      description: "Generate event-related recommendations.",
+      name: "generate_event_plan", // Modify the function name to match the task.
+      description: "Generate a detailed event plan.",
       parameters: {
         type: "object",
         properties: {
-          // Define the expected structure of the AI response for events.
-          eventRecommendation: {
+          activityIdeas: {
             type: "string",
-            description: "The generated event recommendation.",
+            description: "Suggested activities for the event.",
           },
-          description: {
+          schedule: {
             type: "string",
-            description: "The generated event-related recommendations explanation",
+            description: "The event schedule.",
+          },
+          budgetEstimation: {
+            type: "string",
+            description: "Estimated budget for the event.",
+          },
+          themeSuggestion: {
+            type: "string",
+            description: "A theme suggestion for the event.",
           },
         },
-        required: ["eventRecommendation", "description"],
+        required: ["activityIdeas", "schedule", "budgetEstimation", "themeSuggestion"],
       },
     },
   ];
