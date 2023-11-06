@@ -1,4 +1,6 @@
 // file: /components/ResponseDisplay.js
+import React from "react";
+
 const ResponseDisplay = ({ data, error, loading }) => {
   let content;
 
@@ -7,13 +9,15 @@ const ResponseDisplay = ({ data, error, loading }) => {
   } else if (error) {
     content = `Error: ${error.message}`; // Display an error message if there's an issue with the AI request.
   } else if (data) {
-    console.log("Data from OpenAI API in display: ", data.result);
+    const { activityIdeas, schedule, budgetEstimation, themeSuggestion } = data.result;
 
     content = (
-      <>
-        <p>Name: {data.result.eventRecommendation}</p>
-        <p>Description: {data.result.description}</p> {/* Display the AI-generated event recommendation. */}
-      </>
+      <div className="response-content">
+        <p>Theme-Based Activities: {themeSuggestion}</p>
+        <p>Activities Ideas: {activityIdeas}</p>
+        <p>schedule: {schedule}</p>
+        <p> Budget Estimate: {budgetEstimation}</p>
+      </div>
     );
   } else {
     content = ""; // Empty content by default.
