@@ -1,66 +1,30 @@
-import React, { useState } from "react";
-import TextInput from "./TextInput";
+import React from 'react';
 
-const InputForm = ({ onSubmit }) => {
-  const [guests, setGuests] = useState("");
-  const [location, setLocation] = useState("");
-  const [description, setDescription] = useState("");
-
-  const [guestsError, setGuestsError] = useState("");
-  const [locationError, setLocationError] = useState("");
-  const [descriptionError, setDescriptionError] = useState("");
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    let isValid = true;
-
-    if (!guests || isNaN(guests) || guests < 1) {
-      setGuestsError("Please enter a valid number of guests.");
-      isValid = false;
-    } else {
-      setGuestsError("");
-    }
-
-    if (!location) {
-      setLocationError("Location is required.");
-      isValid = false;
-    } else {
-      setLocationError("");
-    }
-
-    if (!description) {
-      setDescriptionError("Description is required.");
-      isValid = false;
-    } else {
-      setDescriptionError("");
-    }
-  };
-
+const InputForm = ({ guests, onChange, location, onChange2, description, onChange3 }) => {
   return (
-    <form onSubmit={handleSubmit} suppressHydrationWarning>
-      <TextInput
-        type="number"
+    <div>
+      <input
+        type="text"
         value={guests}
-        onChange={(value) => setGuests(value)}
-        placeholder="Number of guests"
+        onChange={onChange}
+        className="text-input"
+        placeholder="Enter the number of guests"
       />
-      <span className="error-message">{guestsError}</span>
-
-      <TextInput
+      <input
+        type="text"
         value={location}
-        onChange={(value) => setLocation(value)}
-        placeholder="Event location"
+        onChange={onChange2}
+        className="text-input"
+        placeholder="Enter the location"
       />
-      <span className="error-message">{locationError}</span>
-
-      <TextInput
+       <input
+        type="text"
         value={description}
-        onChange={(value) => setDescription(value)}
-        placeholder="Event description"
+        onChange={onChange3}
+        className="text-input"
+        placeholder="Enter the description"
       />
-      <span className="error-message">{descriptionError}</span>
-    </form>
+    </div>
   );
 };
 

@@ -7,12 +7,13 @@ export function getSystemPrompt() {
   };
 }
 
-export function getUserPrompt(input) {
+export function getUserPrompt({ guests, location, description }) {
   return {
     role: "user",
-    content: `Plan an event for ${input.guests} guests at ${input.location}. The event should be ${input.description}. Suggest theme-based activities and provide a budget estimate.`, // Specify the desired event plan details.
+    content: `Plan an event for ${guests} guests at ${location}. The event should be ${description}. Suggest theme-based activities and provide a budget estimate.`,
   };
 }
+
 
 export function getFunctions() {
   return [

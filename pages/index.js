@@ -1,19 +1,37 @@
-import Head from "next/head";
-import { Inter } from "next/font/google";
-import InputForm from "@/components/InputForm";
-import ResponseDisplay from "@/components/ResponseDisplay";
-import SubmitButton from "@/components/SubmitButton";
-import useApi from "@/hooks/useApi";
-import { getUserPrompt } from "../prompts/promptUtils";
+import React, { useState } from 'react';
+import Head from 'next/head';
+import { Inter } from 'next/font/google';
+import InputForm from '@/components/InputForm';
+import ResponseDisplay from '@/components/ResponseDisplay';
+import SubmitButton from '@/components/SubmitButton';
+import useApi from '@/hooks/useApi';
+import { getUserPrompt } from '../prompts/promptUtils';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
+  const [guests, setInputValue] = useState("");
+  const [location, setInputValue2] = useState("");
+  const [description, setInputValue3] = useState("");
+
   const { data, error, loading, fetchData } = useApi();
 
-  const handleSubmit = async (guests, location, description) => {
-    const submitValue = getUserPrompt(guests, location, description);
-    await fetchData("/api/openai", "POST", submitValue);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const userMessage = getUserPrompt({ guests, location, description });
+    await fetchData('/api/openai', 'POST', userMessage);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleInputChange2 = (event) => {
+    setInputValue2(event.target.value);
+  };
+
+  const handleInputChange3 = (event) => {
+    setInputValue3(event.target.value);
   };
 
   return (
@@ -26,12 +44,19 @@ export default function Home() {
       </Head>
       <main className="container">
         <h1 className={inter.className}>Welcome to the AI-Enhanced Event Planning App</h1>
-        <p className={inter.className}>
-          Plan your events effortlessly with AI assistance
-        </p>
-        <InputForm onSubmit={handleSubmit} />
-        <SubmitButton onClick={() => handleSubmit()}/>
+        <p className={inter.className}>Plan your events effortlessly with AI assistance</p>
+        <form onSubmit={(event) => handleSubmit(event)}>
+        <InputForm
+            value={guests}
+            onChange={handleInputChange}
+            value2={location} // Pass the value and onChange function for the second input
+            onChange2={handleInputChange2}
+            value3={description} // Pass the value and onChange function for the second input
+            onChange3={handleInputChange3}
+          />
+        <SubmitButton onClick={() => handleSubmit() } disabled={loading} />
         <ResponseDisplay data={data} error={error} loading={loading} />
+        </form>
       </main>
     </>
   );
