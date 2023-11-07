@@ -10,28 +10,28 @@ import { getUserPrompt } from '../prompts/promptUtils';
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
-  const [guests, setInputValue] = useState("");
-  const [location, setInputValue2] = useState("");
-  const [description, setInputValue3] = useState("");
+  const [guests, setGuests] = useState("");
+  const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
+  
+  const [hasErrors, setHasErrors] = useState(false);
 
   const { data, error, loading, fetchData } = useApi();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Check for validation errors before submitting
+    if (!guests.trim() || !location.trim() || !description.trim()) {
+      // Set an error flag if there are errors
+      setHasErrors(true);
+      return;
+    }
+
+    // If there are no errors, proceed with form submission
+    setHasErrors(false);
     const userMessage = getUserPrompt({ guests, location, description });
     await fetchData('/api/openai', 'POST', userMessage);
-  };
-
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleInputChange2 = (event) => {
-    setInputValue2(event.target.value);
-  };
-
-  const handleInputChange3 = (event) => {
-    setInputValue3(event.target.value);
   };
 
   return (
@@ -47,13 +47,18 @@ export default function Home() {
         <p className="">Plan your events effortlessly with AI assistance</p>
         <form>
           <InputForm
-            value={guests}
-            onChange={handleInputChange}
-            value2={location}
-            onChange2={handleInputChange2}
-            value3={description}
-            onChange3={handleInputChange3}
+            guests={guests}
+            onChange={(e) => setGuests(e.target.value)}
+            location={location}
+            onChange2={(e) => setLocation(e.target.value)}
+            description={description}
+            onChange3={(e) => setDescription(e.target.value)}
           />
+          <div className='mb-3'>
+          {hasErrors && (
+            <div className="error">Please fill in</div>
+          )}
+          </div>
           <SubmitButton onClick={handleSubmit} disabled={loading} />
           <ResponseDisplay data={data} error={error} loading={loading} />
         </form>
@@ -61,4 +66,3 @@ export default function Home() {
     </>
   );
 }
-
