@@ -41,7 +41,9 @@ export function getFunctions() {
           },
         },
         required: ["activityIdeas", "schedule", "budgetEstimation", "themeSuggestion"],
+
       },
     },
   ];
+  
 }

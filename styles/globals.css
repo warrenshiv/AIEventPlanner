@@ -1,4 +1,5 @@
 /* // file: styles/globals.css */
+@import url(/node_modules/bootstrap/scss/bootstrap.scss);
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;

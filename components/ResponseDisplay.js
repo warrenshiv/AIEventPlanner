@@ -11,12 +11,22 @@ const ResponseDisplay = ({ data, error, loading }) => {
   } else if (data) {
     const { activityIdeas, schedule, budgetEstimation, themeSuggestion } = data.result;
 
+     // Split the schedule string into an array of options
+     const scheduleOptions = schedule.split("\n").map((option, index) => (
+      <option key={index}>{option}</option>
+    ));
+
+     // Split the schedule string into an array of options
+     const scheduleActivities = activityIdeas.split("\n").map((option, index) => (
+      <option key={index}>{option}</option>
+    ));
+
     content = (
       <div className="response-content">
-        <p>Theme-Based Activities: {themeSuggestion}</p>
-        <p>Activities Ideas: {activityIdeas}</p>
-        <p>schedule: {schedule}</p>
-        <p> Budget Estimate: {budgetEstimation}</p>
+        <p><p style={{ fontWeight: "bold" }}>Theme-Based Activities: </p>{themeSuggestion}</p>
+        <p><p style={{ fontWeight: "bold" }}>Activities Ideas: </p>{scheduleActivities}</p>
+        <p><p style={{ fontWeight: "bold" }}>Schedule: </p>{scheduleOptions}</p>
+        <p><p style={{ fontWeight: "bold" }}>Budget Estimate: </p>{budgetEstimation}</p>
       </div>
     );
   } else {

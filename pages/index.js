@@ -43,21 +43,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container">
-        <h1 className={inter.className}>Welcome to the AI-Enhanced Event Planning App</h1>
-        <p className={inter.className}>Plan your events effortlessly with AI assistance</p>
-        <form >
-        <InputForm
+        <h1 className="">Welcome to the AI-Enhanced Event Planning App</h1>
+        <p className="">Plan your events effortlessly with AI assistance</p>
+        <form>
+          <InputForm
             value={guests}
             onChange={handleInputChange}
-            value2={location} // Pass the value and onChange function for the second input
+            value2={location}
             onChange2={handleInputChange2}
-            value3={description} // Pass the value and onChange function for the second input
+            value3={description}
             onChange3={handleInputChange3}
           />
-        <SubmitButton onClick={handleSubmit } disabled={loading} />
-        <ResponseDisplay data={data} error={error} loading={loading} />
+          <SubmitButton onClick={handleSubmit} disabled={loading} />
+          <ResponseDisplay data={data} error={error} loading={loading} />
         </form>
       </main>
     </>
   );
 }
+
