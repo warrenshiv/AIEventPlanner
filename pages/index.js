@@ -45,7 +45,7 @@ export default function Home() {
       <main className="container">
         <h1 className={inter.className}>Welcome to the AI-Enhanced Event Planning App</h1>
         <p className={inter.className}>Plan your events effortlessly with AI assistance</p>
-        <form onSubmit={(event) => handleSubmit(event)}>
+        <form >
         <InputForm
             value={guests}
             onChange={handleInputChange}
@@ -54,7 +54,7 @@ export default function Home() {
             value3={description} // Pass the value and onChange function for the second input
             onChange3={handleInputChange3}
           />
-        <SubmitButton onClick={() => handleSubmit() } disabled={loading} />
+        <SubmitButton onClick={handleSubmit } disabled={loading} />
         <ResponseDisplay data={data} error={error} loading={loading} />
         </form>
       </main>
