@@ -1,6 +1,6 @@
 # AI-Enhanced Event Planner
 
-Welcome to the AI-Enhanced Event Planner! This application leverages the power of OpenAI's GPT-3.5 Turbo model to assist you in planning events effortlessly. It can suggest theme-based activities, schedules and provide a budget estimate based on your input.
+Welcome to the AI-Enhanced Event Planner! This innovative application harnesses the capabilities of OpenAI's GPT-3.5 Turbo model to provide you with seamless event planning support. With its ability to suggest theme-based activities, create schedules, and estimate budgets based on your input, event planning has never been more effortless.
 
 ## Features
 
@@ -70,6 +70,20 @@ const completion = await openai.createChatCompletion({
   top_p: 0,
 });
 ```
+
+## Walkthrough
+
+```javascript
+1. Fill in the number of guests, event location, and event description in the form on the main page.
+2. Click the "Submit" button.
+3. The AI will process your input and provide suggestions for theme-based activities, schedule, budget estimation, and theme suggestions.
+4. The responses will be displayed on the page.
+```
+
+### ChatGPT conversation
+[ChatGPT conversation link](https://chat.openai.com/share/ce37c220-b32b-48d8-a1a8-02a09bd772cd).
+
+
 
 ### Parameters
 
