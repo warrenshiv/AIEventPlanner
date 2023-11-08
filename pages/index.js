@@ -42,7 +42,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="container">
+      <main className="container ">
         <h1 className="">Welcome to the AI-Enhanced Event Planning App</h1>
         <p className="">Plan your events effortlessly with AI assistance</p>
         <form>
@@ -55,9 +55,9 @@ export default function Home() {
             onChange3={(e) => setDescription(e.target.value)}
           />
           <div className='mb-3'>
-          {hasErrors && (
-            <div className="error">Please fill in</div>
-          )}
+            {hasErrors && (
+              <div className="error" style={{ color: 'red' }}> Please fill in all the fields.</div>
+            )}
           </div>
           <SubmitButton onClick={handleSubmit} disabled={loading} />
           <ResponseDisplay data={data} error={error} loading={loading} />
