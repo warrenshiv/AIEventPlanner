@@ -1,6 +1,6 @@
-# Next.js OpenAI Boilerplate
+# AI-Enhanced Event Planner
 
-This is a simplified yet effective Next.js boilerplate project that showcases how to integrate the OpenAI API within a Next.js application. The boilerplate incorporates a user-friendly interface for submitting prompts and rendering the response from the OpenAI API.
+Welcome to the AI-Enhanced Event Planner! This application leverages the power of OpenAI's GPT-3.5 Turbo model to assist you in planning events effortlessly. It can suggest theme-based activities, schedules and provide a budget estimate based on your input.
 
 ## Features
 
@@ -23,11 +23,11 @@ Ensure the following are installed on your machine:
 
 1.  Clone this repository:
 
-    `git clone https://github.com/your-username/nextjs-openai-boilerplate.git`
+    `git clone https://github.com/warrenshiv/AIEventPlanner.git`
 
 2.  Move to the project directory:
 
-    `cd nextjs-openai-boilerplate`
+    `cd AIEventPlanner`
 
 3.  Install dependencies:
 
